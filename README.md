@@ -16,3 +16,14 @@ https://www.mf2fm.com/rv/dhtmlheartcursor.php
 
 버전관리
 https://leeeeeyeon-dev.tistory.com/96
+
+
+	<Resource name="jdbc/webProject"
+		auth="Container"
+		type="javax.sql.DataSource"
+		maxTotal="20"
+		maxIdle="10"
+		driverClassName="com.mysql.cj.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/newhr?serverTimezone=UTC"
+		username="root"
+		password="rootroot" />
