@@ -37,12 +37,12 @@ use login;
 1. user 테이블
 CREATE TABLE tb_user ( #user는 안된대
 			pkid int auto_increment primary key,
-		    loginId VARCHAR(50) NOT NULL UNIQUE,        -- 회원 아이디 (중복 불가)
-		    loginPw VARCHAR(100) NOT NULL,          -- 비밀번호
-		    loginName VARCHAR(50) NOT NULL,             -- 회원 이름
-		    phoneNumber VARCHAR(20),                     -- 전화번호
-		    email VARCHAR(100),                    -- 이메일
-		    birth varchar(100)                         -- 생년월일
+		    loginId VARCHAR(50) NOT NULL UNIQUE,
+		    loginPw VARCHAR(100) NOT NULL,
+		    loginName VARCHAR(50) NOT NULL,
+		    phoneNumber VARCHAR(20),
+		    email VARCHAR(100),
+		    birth varchar(100)
 		);
 
 		DROP TABLE tb_member;
