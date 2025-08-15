@@ -27,3 +27,30 @@ https://leeeeeyeon-dev.tistory.com/96
 		url="jdbc:mysql://localhost:3306/newhr?serverTimezone=UTC"
 		username="root"
 		password="rootroot" />
+
+-------------------------------------------------------------------------- sql 
+
+CREATE DATABASE IF NOT EXISTS login;
+USE login;
+use login;
+
+1. user 테이블
+CREATE TABLE tb_user ( #user는 안된대
+			pkid int auto_increment primary key,
+		    loginId VARCHAR(50) NOT NULL UNIQUE,        -- 회원 아이디 (중복 불가)
+		    loginPw VARCHAR(100) NOT NULL,          -- 비밀번호
+		    loginName VARCHAR(50) NOT NULL,             -- 회원 이름
+		    phoneNumber VARCHAR(20),                     -- 전화번호
+		    email VARCHAR(100),                    -- 이메일
+		    birth varchar(100)                         -- 생년월일
+		);
+
+		DROP TABLE tb_member;
+		DROP TABLE tb_user;
+
+		select * from tb_user;
+
+
+2. post 테이블
+
+   
