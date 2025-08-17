@@ -53,3 +53,5 @@ https://leeeeeyeon-dev.tistory.com/96
 		password="rootroot" />
 
 -------------------------------------------------------------------------- 
+헤더 - 로그인하면 세션값에 따라 마이페이지 등등 뜨는 것
+https://codingwone.tistory.com/78
