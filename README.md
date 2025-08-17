@@ -55,3 +55,6 @@ https://leeeeeyeon-dev.tistory.com/96
 -------------------------------------------------------------------------- 
 헤더 - 로그인하면 세션값에 따라 마이페이지 등등 뜨는 것
 https://codingwone.tistory.com/78
+
+폴더가 다른 jsp파일을 연결하는 방법
+https://bongra.tistory.com/245
