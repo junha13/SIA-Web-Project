@@ -22,7 +22,10 @@ postLocation VARCHAR(30) NOT NULL,  #외래키 걸기
 postContent mediumtext NOT NULL,
 postStartDay VARCHAR(50) NOT NULL,
 postEndDay VARCHAR(50) NOT NULL,
-postThumbnail VARCHAR(200) NOT NULL  #메서드가 실행될 때 밀리초가 저장되어 파일을 구분함
+postThumbnail VARCHAR(200) NOT NULL,  #메서드가 실행될 때 밀리초가 저장되어 파일을 구분함
+userId VARCHAR(50) NOT NULL,
+foreign key(userId) references tb_user(loginId),
+foreign key(postLocation) references tb_regions(label)
 );
 
 ALTER TABLE tb_post ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
@@ -31,6 +34,12 @@ ALTER TABLE tb_post ADD COLUMN created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIM
 DROP TABLE tb_post;
 
  select * from tb_post;
+ 
+UPDATE Reservation
+
+SET RoomNum = 2002
+
+WHERE Name = '홍길동';
  
  create table tb_regions (
  sggCode varchar(10) not null PRIMARY KEY,
