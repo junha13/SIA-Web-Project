@@ -1,0 +1,23 @@
+
+1. postServlet.java에 아래 case 하나 더 추가
+			case "spot.post": {
+				String sidoNameKo = req.getParameter("sidoNameKo");
+				res.setContentType("application/json; charset=UTF-8");
+				List<String> result;
+				result = dao.findAllSido(); // 시도 목록
+				res.getWriter().write(new Gson().toJson(result));
+	            res.getWriter().write(json);
+			}
+
+2. postDAO.java에 아래 메서드 하나 더 추가
+	public List<String> findAllSido() throws Exception {
+		List<String> sidoList = new ArrayList<>();
+		Connection con = getConnection();
+		PreparedStatement psmt = con.prepareStatement("Select distinct sidoNameKo from tb_regions order by sidoNameKo");
+		ResultSet rs = psmt.executeQuery();
+		while (rs.next()) {
+			sidoList.add(rs.getString("sidoNameKo"));
+		}
+		con.close();
+		return sidoList;
+	}
