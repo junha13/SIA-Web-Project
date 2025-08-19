@@ -1,0 +1,8 @@
+<script src="/js/tinymce/tinymce.min.js"></script>
+<script>
+  tinymce.init({
+    selector: '#myTextarea',  // 에디터 적용할 textarea ID
+    plugins: 'link image code',
+    toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+  });
+</script>
