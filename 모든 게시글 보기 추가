@@ -1,0 +1,30 @@
+======== postDAO.java에 아래 메서드 코드 추가 ========
+======== getPostByPostId 메서드랑 합쳐도 되지만, 모든 지역 다 연결되게 한다고 해서 일단 이렇게 메서드 구분하는게 나을 듯 해요 ========
+	public List<PostVO> findAll() throws Exception {
+		List<PostVO> list = new ArrayList<>();
+		Connection con = getConnection();
+		PreparedStatement ps = con.prepareStatement("select pkid, postTitle, postContent, postLocation, created_at from tb_post order by created_at DESC");
+		ResultSet rs = ps.executeQuery();		
+		while (rs.next()) {
+			PostVO post = new PostVO();
+			post.setPkId(rs.getInt("pkid"));
+			post.setPostTitle(rs.getString("postTitle"));
+			post.setPostContent(rs.getString("postContent"));
+			post.setPostLocation(rs.getString("postLocation"));
+			post.setCreatedAt(rs.getTimestamp("created_at"));
+			list.add(post);
+			}
+		con.close();
+		return list;
+	}
+
+======== PostServlet.java에 아래 case 조건 더 추가 ========
+case "all.post" : {
+				    List<PostVO> list = dao.findAll();
+				    req.setAttribute("list", list);
+				    req.getRequestDispatcher("/post/post-list.jsp").forward(req, res);
+				    return;
+				}
+
+======== header.jsp 파일 114 번줄 모든글보기 href 경로 아래 코드로 변경 ========
+href="${pageContext.request.contextPath}/all.post"
