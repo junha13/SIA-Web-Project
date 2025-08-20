@@ -1,0 +1,201 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%
+String loginId = null;
+if (session.getAttribute("loginId") != null) {
+	loginId = (String) session.getAttribute("loginId");
+}
+
+// 에러 메시지 가져오기
+String errorMessage = null;
+if (request.getParameter("error") != null) {
+	errorMessage = "회원정보가 없습니다. 다시 입력해 주세요!";
+}
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+
+<!-- 캐러솔 부트스트랩 -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+	
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+
+.cal-sans-regular {
+	font-family: "Cal Sans", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	}
+
+html, body {
+	font-family: 'Noto Sans KR', sans-serif;
+	height: 100%;
+	margin: 0;
+}
+
+.main-container {
+	display:flex;
+	width: 85%;
+	max-width: 1800px;
+	height: 800px;
+	margin: 50px auto;
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+/* carousel css code */
+.carousel-container {
+	flex: 3;
+	height: 100%;
+}
+
+.carousel-container img {
+	height: 100%;
+	object-fit: cover; /* 꽉 채우기 */
+}
+
+/* 로그인 창 */
+.login-container {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	padding: 40px;
+	box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+	position: relative;
+	z-index: 10;
+}
+
+.login-container form {
+	width: 100%;
+	max-width: 320px;
+	margin-top: 20px;
+}
+
+.login-top {
+	font-family: "Cal Sans", sans-serif;
+	font-size: 45px;
+	text-align: center;
+}
+
+input[type="text"], input[type="password"] {
+	width: 100%;
+	padding: 8px;
+	margin: 5px 0;
+	box-sizing: border-box;
+}
+
+button {
+	font-size: 20px;
+	font-weight: bold;
+	width: 100%;
+	padding: 10px;
+	background-color: #1A66CC;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #0D33B3;
+}
+
+.join-box {
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+}
+
+.go-join {
+	text-decoration: none;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.back-main {
+	text-decoration: none;
+	font-weight: bold;
+	padding-left: 10px;
+	font-size: 30px;
+}
+
+</style>
+</head>
+<body>
+
+<div class="main-container">
+	<!-- Carousel -->
+	<div class="carousel-container">
+		<div class="carousel slide h-100" data-bs-ride="carousel">
+			<div class="carousel-item active h-100" data-bs-interval="5000">
+				<img src="<%=request.getContextPath()%>/img/Busan.jpg" class="d-block w-100 h-100" alt="부산">
+			</div>
+			<div class="carousel-item h-100" data-bs-interval="5000">
+				<img src="<%=request.getContextPath()%>/img/Jeju.jpg" class="d-block w-100 h-100" alt="제주">
+			</div>
+			<div class="carousel-item h-100" data-bs-interval="5000">
+				<img src="<%=request.getContextPath()%>/img/Seoul.jpg" class="d-block w-100 h-100" alt="서울">
+			</div>
+		</div>
+	</div>
+	
+	<!-- 로그인 창 -->
+	<div class="login-container">
+		<%
+		if (loginId == null) {
+		%>
+		<h2 class="login-top">TRABLOG</h2>
+		<%
+		if (errorMessage != null) {
+		%>
+		<div style="color: red; font-weight: bold;"><%=errorMessage%></div>
+		<%
+		}
+		%>
+		<form method="post" action="login.do">
+			<p>
+				<input placeholder="아이디" type="text" name="loginId" required autofocus>
+			</p>
+			<p>
+				<input placeholder="비밀번호" type="password" name="loginPw" required>
+			</p>
+			<p>
+				<button type="submit">로그인</button>
+			</p>
+		</form>
+		<div class="join-box">
+			<p class="question">
+				아직 회원이 아니신가요?  <a href="join.jsp" class="go-join">회원가입</a>
+			</p>
+		</div>
+		
+		<%
+		} else {
+		%>
+			<h2 class="login-top">TRABLOG</h2>
+			<p class="back-main">로그인되어 있습니다.</p>
+			<a class="back-main" href="${pageContext.request.contextPath}/map.jsp">메인화면으로 돌아가기</a>
+		<%
+		}
+		%>
+	</div>
+</div>
+
+
+</body>
+</html>
